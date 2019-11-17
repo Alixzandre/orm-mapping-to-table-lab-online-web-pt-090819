@@ -9,7 +9,7 @@ class Student
      @id = id 
    end
    
-   def self.create_table
+  def self.create_table
     sql =  <<-SQL 
       CREATE TABLE IF NOT EXISTS students(
         id INTEGER PRIMARY KEY, 
@@ -28,7 +28,7 @@ class Student
   end
   
   
-   def save
+  def save
     sql = <<-SQL
       INSERT INTO students (name, grade)
         VALUES (?, ?)
@@ -36,6 +36,10 @@ class Student
 
     DB[:conn].execute(sql, self.name, self.grade)
     @id = DB[:conn].execute("SELECT MAX(ID) AS LastID FROM students")[0][0]
+  end
+  
+  def self.create 
+    
   end
   
 end
